@@ -4,7 +4,7 @@ import { authGuard } from './core/guards/auth.guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -23,24 +23,24 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/home/home.component').then(m => m.HomeComponent)
   },
+  {
+    path: 'character-sheet',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./pages/character-sheet/character-sheet.component').then(m => m.CharacterSheetComponent)
+  },
   // {
-  //   path: 'profile',
+  //   path: 'profile', 
   //   canActivate: [authGuard],
   //   loadComponent: () =>
   //     import('./pages/profile/profile.component').then(m => m.ProfileComponent)
   // },
-  // {
-  //   path: 'character-sheet',
-  //   canActivate: [authGuard],
-  //   loadComponent: () =>
-  //     import('./pages/character-sheet/character-sheet.component').then(m => m.CharacterSheetComponent)
-  // },
-  // {
-  //   path: 'servant-sheet',
-  //   canActivate: [authGuard],
-  //   loadComponent: () =>
-  //     import('./pages/servant-sheet/servant-sheet.component').then(m => m.ServantSheetComponent)
-  // },
+  {
+    path: 'servant-sheet', 
+    canActivate: [authGuard],
+     loadComponent: () =>
+       import('./pages/servant-sheet/servant-sheet.component').then(m => m.ServantSheetComponent)
+  },
   {
     path: '**',
     redirectTo: 'home'
