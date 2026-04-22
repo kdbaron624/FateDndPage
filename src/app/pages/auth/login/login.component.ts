@@ -180,20 +180,22 @@ export class LoginComponent {
 
   constructor(private auth: AuthService, private router: Router) {}
 
-  async onLogin() {
+    async onLogin() {
     if (!this.email || !this.password) {
-      this.error = 'Completa todos los campos.';
-      return;
+        this.error = 'Completa todos los campos.';
+        return;
     }
     this.loading = true;
     this.error = '';
     try {
-      await this.auth.signIn(this.email, this.password);
-      this.router.navigate(['/home']);
+        console.log('Intentando login:', { email: this.email.trim(), passwordLength: this.password.length });
+        await this.auth.signIn(this.email, this.password);
+        this.router.navigate(['/home']);
     } catch (err: any) {
-      this.error = err.message ?? 'Error al iniciar sesión.';
+        console.error('Error login completo:', err);
+        this.error = err.message ?? 'Error al iniciar sesión.';
     } finally {
-      this.loading = false;
+        this.loading = false;
     }
-  }
+    }
 }

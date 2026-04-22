@@ -25,7 +25,16 @@ export class AuthService {
   }
 
   async signUp(email: string, password: string, username: string, characterName: string) {
-    const { data, error } = await this.sb.auth.signUp({ email, password });
+    const { data, error } = await this.sb.auth.signUp({
+    email: email.trim(),
+    password: password.trim(),
+    options: {
+      data: {
+        username: username.trim(),
+        character_name: characterName.trim()
+      }
+    }
+  });
     if (error) throw error;
 
     if (data.user) {
@@ -44,7 +53,10 @@ export class AuthService {
   }
 
   async signIn(email: string, password: string) {
-    const { data, error } = await this.sb.auth.signInWithPassword({ email, password });
+    const { data, error } = await this.sb.auth.signInWithPassword({
+    email: email.trim(),
+    password: password.trim()
+    });
     if (error) throw error;
     return data;
   }
