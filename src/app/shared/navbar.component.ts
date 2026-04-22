@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
       <div class="navbar-brand">
         <span class="brand-text">Fate</span>
         <span class="brand-sep">/</span>
-        <span class="brand-sub">DnD</span>
+        <span class="brand-sub">Lost Continuum</span>
       </div>
 
       <button class="nav-hamburger" (click)="menuOpen = !menuOpen">
@@ -71,132 +71,130 @@ import { CommonModule } from '@angular/common';
     </nav>
   `,
   styles: [`
-    .navbar {
-      background: var(--fate-panel);
-      border-bottom: 1px solid var(--fate-border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 1.5rem;
-      height: 60px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+  .navbar {
+    background: var(--fate-panel);
+    border-bottom: 1px solid var(--fate-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
 
-    .navbar::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--fate-magenta), transparent);
-    }
+  .navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--fate-blue),
+      var(--fate-cyan),
+      var(--fate-blue),
+      transparent
+    );
+  }
 
-    .navbar-brand {
-      display: flex;
-      align-items: baseline;
-      gap: 2px;
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      user-select: none;
-    }
+  .navbar-brand {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    user-select: none;
+  }
 
-    .brand-text { color: var(--fate-magenta); }
-    .brand-sep  { color: var(--fate-gold); font-size: 1.4rem; }
-    .brand-sub  { color: var(--fate-white); font-size: 0.9rem; }
+  .brand-text { color: var(--fate-blue-bright); }
+  .brand-sep  { color: var(--fate-cyan); font-size: 1.4rem; }
+  .brand-sub  { color: var(--fate-white); font-size: 0.9rem; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .nav-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--fate-muted-bright);
+    font-family: var(--font-heading);
+    font-size: 0.76rem;
+    letter-spacing: 0.08em;
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .nav-links a:hover {
+    color: var(--fate-blue-bright);
+    background: var(--fate-blue-glow);
+  }
+
+  .nav-links a.active {
+    color: var(--fate-cyan);
+    background: var(--fate-blue-glow);
+    border-bottom: 1px solid var(--fate-cyan);
+  }
+
+  .nav-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--fate-border);
+    margin: 0 0.5rem;
+  }
+
+  .nav-logout { font-size: 0.72rem; padding: 0.35rem 0.9rem; }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--fate-blue);
+    border-radius: 2px;
+    transition: all 0.2s ease;
+  }
+
+  @media (max-width: 700px) {
+    .nav-hamburger { display: flex; }
 
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .nav-links a {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--fate-muted);
-      font-family: var(--font-heading);
-      font-size: 0.78rem;
-      letter-spacing: 0.08em;
-      padding: 0.4rem 0.75rem;
-      border-radius: var(--radius-sm);
-      text-transform: uppercase;
-      transition: all 0.2s ease;
-      text-decoration: none;
-    }
-
-    .nav-links a:hover {
-      color: var(--fate-white);
-      background: rgba(233, 30, 140, 0.08);
-    }
-
-    .nav-links a.active {
-      color: var(--fate-magenta);
-      background: var(--fate-magenta-glow);
-    }
-
-    .nav-divider {
-      width: 1px;
-      height: 24px;
-      background: var(--fate-border);
-      margin: 0 0.5rem;
-    }
-
-    .nav-logout {
-      font-size: 0.72rem;
-      padding: 0.35rem 0.9rem;
-    }
-
-    .nav-hamburger {
       display: none;
+      position: absolute;
+      top: 60px;
+      left: 0; right: 0;
+      background: var(--fate-panel);
+      border-bottom: 1px solid var(--fate-border);
       flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
+      align-items: stretch;
+      padding: 1rem;
+      gap: 0.5rem;
     }
 
-    .nav-hamburger span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--fate-magenta);
-      border-radius: 2px;
-      transition: all 0.2s ease;
-    }
+    .nav-links.open { display: flex; }
 
-    @media (max-width: 700px) {
-      .nav-hamburger { display: flex; }
+    .nav-links a { padding: 0.75rem 1rem; font-size: 0.85rem; }
 
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 60px;
-        left: 0; right: 0;
-        background: var(--fate-panel);
-        border-bottom: 1px solid var(--fate-border);
-        flex-direction: column;
-        align-items: stretch;
-        padding: 1rem;
-        gap: 0.5rem;
-      }
-
-      .nav-links.open { display: flex; }
-
-      .nav-links a {
-        padding: 0.75rem 1rem;
-        font-size: 0.85rem;
-      }
-
-      .nav-divider {
-        width: 100%;
-        height: 1px;
-        margin: 0.25rem 0;
-      }
-    }
-  `]
+    .nav-divider { width: 100%; height: 1px; margin: 0.25rem 0; }
+  }
+`]
 })
 export class NavbarComponent {
   menuOpen = false;

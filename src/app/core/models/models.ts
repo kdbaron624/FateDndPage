@@ -132,3 +132,30 @@ export interface Post {
   created_at?: string;
   profiles?: Profile;
 }
+
+// ── COMENTARIOS ──────────────────────────────────────────────
+export interface PostComment {
+  id?: string;
+  post_id: string;
+  user_id: string;
+  content: string;
+  created_at?: string;
+  profiles?: Profile;
+}
+
+// ── REACCIONES ───────────────────────────────────────────────
+export interface PostReaction {
+  id?: string;
+  post_id: string;
+  user_id: string;
+  emoji: string;
+  created_at?: string;
+}
+
+export interface ReactionCount {
+  emoji: string;
+  count: number;
+  reacted: boolean; // si el usuario actual ya reaccionó
+}
+
+export const REACTION_EMOJIS = ['⚔️', '✨', '🔥', '💙', '👑', '🌙'];

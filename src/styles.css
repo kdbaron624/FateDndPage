@@ -2,48 +2,69 @@
 
 /* ── VARIABLES GLOBALES ─────────────────────────────────────── */
 :root {
-  --fate-black:      #080810;
-  --fate-deep:       #0d0d1a;
-  --fate-dark:       #12121f;
-  --fate-panel:      #1a1a2e;
-  --fate-panel-alt:  #16213e;
-  --fate-border:     #2a2a4a;
-  --fate-magenta:    #e91e8c;
-  --fate-magenta-dim:#a01560;
-  --fate-magenta-glow: rgba(233, 30, 140, 0.15);
-  --fate-gold:       #d4af37;
-  --fate-gold-dim:   #8a7020;
-  --fate-gold-glow:  rgba(212, 175, 55, 0.15);
-  --fate-cyan:       #00d4ff;
-  --fate-cyan-dim:   #007a99;
-  --fate-white:      #f0e6ff;
-  --fate-muted:      #8888aa;
-  --fate-danger:     #ff4466;
+  /* Fondos — azul noche profundo */
+  --fate-black:       #020408;
+  --fate-deep:        #050d18;
+  --fate-dark:        #080f1e;
+  --fate-panel:       #0a1628;
+  --fate-panel-alt:   #0d1f3c;
+  --fate-border:      #1a3a5c;
+  --fate-border-bright: #2a5a8c;
 
-  --font-display:  'Cinzel Decorative', serif;
-  --font-heading:  'Cinzel', serif;
-  --font-body:     'Raleway', sans-serif;
+  /* Azul eléctrico — color principal CCC */
+  --fate-blue:        #0af;
+  --fate-blue-bright: #33ccff;
+  --fate-blue-dim:    #0066aa;
+  --fate-blue-glow:   rgba(0, 170, 255, 0.12);
+  --fate-blue-glow2:  rgba(0, 170, 255, 0.25);
 
-  --radius-sm:  4px;
-  --radius-md:  8px;
-  --radius-lg:  12px;
+  /* Cian — acento secundario */
+  --fate-cyan:        #00fff7;
+  --fate-cyan-dim:    #009990;
+  --fate-cyan-glow:   rgba(0, 255, 247, 0.1);
 
+  /* Magenta — acento terciario (BB's color) */
+  --fate-magenta:     #ff2d78;
+  --fate-magenta-dim: #991a48;
+  --fate-magenta-glow: rgba(255, 45, 120, 0.12);
+
+  /* Dorado — detalles premium */
+  --fate-gold:        #d4af37;
+  --fate-gold-dim:    #8a7020;
+  --fate-gold-glow:   rgba(212, 175, 55, 0.12);
+
+  /* Textos */
+  --fate-white:       #e8f4ff;
+  --fate-muted:       #5a8ab0;
+  --fate-muted-bright:#7aaad0;
+  --fate-danger:      #ff4455;
+
+  /* Tipografía */
+  --font-display: 'Cinzel Decorative', serif;
+  --font-heading: 'Cinzel', serif;
+  --font-body:    'Raleway', sans-serif;
+
+  /* Layout */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
   --transition: 0.2s ease;
 }
 
-/* ── RESET Y BASE ───────────────────────────────────────────── */
+/* ── RESET ──────────────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html, body {
-  height: 100%;
-}
+html, body { height: 100%; }
 
 body {
   background-color: var(--fate-black);
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(0, 100, 200, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(0, 50, 120, 0.08) 0%, transparent 60%);
   color: var(--fate-white);
   font-family: var(--font-body);
   font-size: 16px;
@@ -51,14 +72,14 @@ body {
   overflow-x: hidden;
 }
 
-/* Scrollbar estilo Fate */
-::-webkit-scrollbar { width: 6px; }
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--fate-deep); }
 ::-webkit-scrollbar-thumb {
-  background: var(--fate-magenta-dim);
+  background: var(--fate-blue-dim);
   border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--fate-magenta); }
+::-webkit-scrollbar-thumb:hover { background: var(--fate-blue); }
 
 /* ── TIPOGRAFÍA ─────────────────────────────────────────────── */
 h1, h2, h3, h4, h5, h6 {
@@ -73,13 +94,13 @@ h2 { font-size: 1.5rem; }
 h3 { font-size: 1.2rem; }
 
 a {
-  color: var(--fate-magenta);
+  color: var(--fate-blue);
   text-decoration: none;
   transition: color var(--transition);
 }
-a:hover { color: var(--fate-gold); }
+a:hover { color: var(--fate-cyan); }
 
-/* ── LAYOUT PRINCIPAL ───────────────────────────────────────── */
+/* ── LAYOUT ─────────────────────────────────────────────────── */
 .app-container {
   min-height: 100vh;
   display: flex;
@@ -94,7 +115,7 @@ a:hover { color: var(--fate-gold); }
   width: 100%;
 }
 
-/* ── PANELES / CARDS ────────────────────────────────────────── */
+/* ── CARDS ──────────────────────────────────────────────────── */
 .fate-card {
   background: var(--fate-panel);
   border: 1px solid var(--fate-border);
@@ -107,13 +128,38 @@ a:hover { color: var(--fate-gold); }
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--fate-magenta), transparent);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--fate-blue),
+    var(--fate-cyan),
+    var(--fate-blue),
+    transparent
+  );
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
 .fate-card-gold::before {
-  background: linear-gradient(90deg, transparent, var(--fate-gold), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--fate-gold),
+    var(--fate-cyan),
+    var(--fate-gold),
+    transparent
+  );
+}
+
+.fate-card-magenta::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--fate-magenta),
+    var(--fate-blue),
+    var(--fate-magenta),
+    transparent
+  );
 }
 
 /* ── FORMULARIOS ────────────────────────────────────────────── */
@@ -131,10 +177,10 @@ a:hover { color: var(--fate-gold); }
 
 .form-group label {
   font-family: var(--font-heading);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--fate-muted);
+  color: var(--fate-muted-bright);
 }
 
 .fate-input {
@@ -151,8 +197,8 @@ a:hover { color: var(--fate-gold); }
 }
 
 .fate-input:focus {
-  border-color: var(--fate-magenta);
-  box-shadow: 0 0 0 3px var(--fate-magenta-glow);
+  border-color: var(--fate-blue);
+  box-shadow: 0 0 0 3px var(--fate-blue-glow);
 }
 
 .fate-input::placeholder { color: var(--fate-muted); }
@@ -165,7 +211,7 @@ textarea.fate-input {
 select.fate-input {
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23e91e8c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230af' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 2.5rem;
@@ -174,68 +220,95 @@ select.fate-input {
 /* ── BOTONES ────────────────────────────────────────────────── */
 .fate-btn {
   background: transparent;
-  border: 1px solid var(--fate-magenta);
+  border: 1px solid var(--fate-blue);
   border-radius: var(--radius-sm);
-  color: var(--fate-magenta);
+  color: var(--fate-blue);
   cursor: pointer;
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   letter-spacing: 0.1em;
   padding: 0.65rem 1.5rem;
   text-transform: uppercase;
   transition: all var(--transition);
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 .fate-btn:hover {
-  background: var(--fate-magenta);
-  color: var(--fate-black);
+  background: var(--fate-blue-glow2);
+  border-color: var(--fate-blue-bright);
+  color: var(--fate-blue-bright);
+  box-shadow: 0 0 12px var(--fate-blue-glow);
 }
 
 .fate-btn:active { transform: scale(0.97); }
 
 .fate-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
+/* Primary — azul sólido */
 .fate-btn-primary {
-  background: var(--fate-magenta);
+  background: var(--fate-blue);
   color: var(--fate-black);
   font-weight: 600;
+  border-color: var(--fate-blue);
 }
 
 .fate-btn-primary:hover {
-  background: var(--fate-magenta-dim);
-  color: var(--fate-white);
+  background: var(--fate-blue-bright);
+  border-color: var(--fate-blue-bright);
+  color: var(--fate-black);
+  box-shadow: 0 0 16px var(--fate-blue-glow2);
 }
 
+/* Gold */
 .fate-btn-gold {
   border-color: var(--fate-gold);
   color: var(--fate-gold);
 }
 
 .fate-btn-gold:hover {
-  background: var(--fate-gold);
-  color: var(--fate-black);
+  background: var(--fate-gold-glow);
+  border-color: var(--fate-gold);
+  color: var(--fate-gold);
+  box-shadow: 0 0 12px var(--fate-gold-glow);
 }
 
+/* Magenta */
+.fate-btn-magenta {
+  border-color: var(--fate-magenta);
+  color: var(--fate-magenta);
+}
+
+.fate-btn-magenta:hover {
+  background: var(--fate-magenta-glow);
+  border-color: var(--fate-magenta);
+  box-shadow: 0 0 12px var(--fate-magenta-glow);
+}
+
+/* Danger */
 .fate-btn-danger {
   border-color: var(--fate-danger);
   color: var(--fate-danger);
 }
 
 .fate-btn-danger:hover {
-  background: var(--fate-danger);
-  color: var(--fate-white);
+  background: rgba(255, 68, 85, 0.12);
+  box-shadow: 0 0 10px rgba(255,68,85,0.2);
 }
 
 .fate-btn-sm {
-  font-size: 0.75rem;
-  padding: 0.4rem 1rem;
+  font-size: 0.72rem;
+  padding: 0.38rem 0.9rem;
 }
 
-/* ── STAT BOX (DnD) ─────────────────────────────────────────── */
+/* ── STAT BOX ───────────────────────────────────────────────── */
 .stat-box {
   background: var(--fate-deep);
   border: 1px solid var(--fate-border);
@@ -244,16 +317,21 @@ select.fate-input {
   flex-direction: column;
   align-items: center;
   padding: 0.75rem 0.5rem 0.5rem;
-  gap: 0.25rem;
+  gap: 0.3rem;
   text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.stat-box:hover {
+  border-color: var(--fate-border-bright);
 }
 
 .stat-box .stat-label {
   font-family: var(--font-heading);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--fate-muted);
+  color: var(--fate-muted-bright);
 }
 
 .stat-box .stat-value {
@@ -266,7 +344,7 @@ select.fate-input {
 
 .stat-box .stat-modifier {
   font-family: var(--font-heading);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
   background: var(--fate-panel);
   border: 1px solid var(--fate-border);
@@ -275,9 +353,21 @@ select.fate-input {
   min-width: 2.5rem;
 }
 
-.stat-box .stat-modifier.positive { color: var(--fate-cyan); border-color: var(--fate-cyan-dim); }
-.stat-box .stat-modifier.negative { color: var(--fate-danger); border-color: var(--fate-danger); }
-.stat-box .stat-modifier.zero     { color: var(--fate-muted); }
+.stat-box .stat-modifier.positive {
+  color: var(--fate-blue-bright);
+  border-color: var(--fate-blue-dim);
+  background: var(--fate-blue-glow);
+}
+
+.stat-box .stat-modifier.negative {
+  color: var(--fate-danger);
+  border-color: var(--fate-danger);
+  background: rgba(255,68,85,0.06);
+}
+
+.stat-box .stat-modifier.zero {
+  color: var(--fate-muted-bright);
+}
 
 .stat-box input[type="number"] {
   background: transparent;
@@ -291,18 +381,19 @@ select.fate-input {
   outline: none;
   -moz-appearance: textfield;
 }
+
 .stat-box input[type="number"]::-webkit-outer-spin-button,
 .stat-box input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-/* ── SERVANT RANK BADGE ─────────────────────────────────────── */
+/* ── RANK BADGES ────────────────────────────────────────────── */
 .rank-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   padding: 0.15rem 0.5rem;
@@ -310,33 +401,51 @@ select.fate-input {
   border: 1px solid;
 }
 
-.rank-EX  { color: #ff00ff; border-color: #ff00ff; background: rgba(255,0,255,0.1); }
-.rank-Ap  { color: var(--fate-gold); border-color: var(--fate-gold-dim); background: var(--fate-gold-glow); }
-.rank-A   { color: var(--fate-gold); border-color: var(--fate-gold-dim); background: var(--fate-gold-glow); }
-.rank-B   { color: var(--fate-cyan); border-color: var(--fate-cyan-dim); background: rgba(0,212,255,0.08); }
-.rank-C   { color: #aaffaa; border-color: #336633; background: rgba(100,255,100,0.08); }
-.rank-D   { color: var(--fate-muted); border-color: var(--fate-border); background: transparent; }
-.rank-E   { color: #666688; border-color: var(--fate-border); background: transparent; }
+.rank-EX  {
+  color: var(--fate-cyan);
+  border-color: var(--fate-cyan-dim);
+  background: var(--fate-cyan-glow);
+}
+.rank-Ap  {
+  color: var(--fate-gold);
+  border-color: var(--fate-gold-dim);
+  background: var(--fate-gold-glow);
+}
+.rank-A   {
+  color: var(--fate-blue-bright);
+  border-color: var(--fate-blue-dim);
+  background: var(--fate-blue-glow);
+}
+.rank-B   {
+  color: #88ccff;
+  border-color: #2255aa;
+  background: rgba(100,170,255,0.08);
+}
+.rank-C   {
+  color: #aaccee;
+  border-color: var(--fate-border);
+  background: transparent;
+}
+.rank-D   {
+  color: var(--fate-muted-bright);
+  border-color: var(--fate-border);
+  background: transparent;
+}
+.rank-E   {
+  color: var(--fate-muted);
+  border-color: var(--fate-border);
+  background: transparent;
+}
 
 /* ── FRIENDSHIP STARS ───────────────────────────────────────── */
-.friendship-stars {
-  display: flex;
-  gap: 0.35rem;
-}
+.friendship-stars { display: flex; gap: 0.35rem; }
 
-.friendship-stars .star {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  transition: transform var(--transition);
-}
-
+.friendship-stars .star { width: 20px; height: 20px; cursor: pointer; transition: transform var(--transition); }
 .friendship-stars .star:hover { transform: scale(1.2); }
+.friendship-stars .star.filled path { fill: var(--fate-gold); }
+.friendship-stars .star.empty  path { fill: transparent; stroke: var(--fate-gold-dim); stroke-width: 1.5; }
 
-.friendship-stars .star.filled path  { fill: var(--fate-gold); }
-.friendship-stars .star.empty  path  { fill: transparent; stroke: var(--fate-gold-dim); stroke-width: 1.5; }
-
-/* ── LOCK OVERLAY (Servant info bloqueada) ──────────────────── */
+/* ── LOCKED SECTION ─────────────────────────────────────────── */
 .locked-section {
   position: relative;
   border: 1px dashed var(--fate-border);
@@ -348,7 +457,7 @@ select.fate-input {
 .locked-section .lock-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(8, 8, 16, 0.85);
+  background: rgba(2, 4, 8, 0.88);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -357,20 +466,16 @@ select.fate-input {
   backdrop-filter: blur(3px);
 }
 
-.locked-section .lock-icon {
-  font-size: 1.5rem;
-  color: var(--fate-magenta);
-}
-
+.locked-section .lock-icon { font-size: 1.5rem; color: var(--fate-blue); }
 .locked-section .lock-text {
   font-family: var(--font-heading);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 0.1em;
-  color: var(--fate-muted);
+  color: var(--fate-muted-bright);
   text-align: center;
 }
 
-/* ── MENSAJES DE ERROR / ÉXITO ──────────────────────────────── */
+/* ── ALERTAS ────────────────────────────────────────────────── */
 .fate-alert {
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
@@ -379,18 +484,18 @@ select.fate-input {
 }
 
 .fate-alert-error {
-  background: rgba(255, 68, 102, 0.1);
+  background: rgba(255, 68, 85, 0.08);
   border-color: var(--fate-danger);
-  color: #ffaaaa;
+  color: #ffaabb;
 }
 
 .fate-alert-success {
-  background: rgba(0, 212, 100, 0.1);
-  border-color: #00d464;
-  color: #aaffcc;
+  background: rgba(0, 170, 255, 0.08);
+  border-color: var(--fate-blue);
+  color: var(--fate-blue-bright);
 }
 
-/* ── DIVIDER DECORATIVO ─────────────────────────────────────── */
+/* ── DIVIDER ────────────────────────────────────────────────── */
 .fate-divider {
   display: flex;
   align-items: center;
@@ -403,6 +508,9 @@ select.fate-input {
   content: '';
   flex: 1;
   height: 1px;
+}
+
+.fate-divider::before {
   background: linear-gradient(90deg, transparent, var(--fate-border));
 }
 
@@ -412,14 +520,14 @@ select.fate-input {
 
 .fate-divider span {
   font-family: var(--font-heading);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   letter-spacing: 0.2em;
-  color: var(--fate-magenta);
+  color: var(--fate-blue);
   text-transform: uppercase;
   white-space: nowrap;
 }
 
-/* ── GRID DE STATS ──────────────────────────────────────────── */
+/* ── STATS GRID ─────────────────────────────────────────────── */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -430,7 +538,7 @@ select.fate-input {
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* ── POST CARD ──────────────────────────────────────────────── */
+/* ── POSTS ──────────────────────────────────────────────────── */
 .post-image {
   border-radius: var(--radius-md);
   max-width: 100%;
@@ -441,32 +549,31 @@ select.fate-input {
   border: 1px solid var(--fate-border);
 }
 
-/* ── AVATAR ─────────────────────────────────────────────────── */
+/* ── AVATARES ───────────────────────────────────────────────── */
 .avatar {
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--fate-magenta-dim);
+  border: 2px solid var(--fate-blue-dim);
 }
 
 .avatar-placeholder {
   border-radius: 50%;
   background: var(--fate-panel);
-  border: 2px solid var(--fate-magenta-dim);
+  border: 2px solid var(--fate-blue-dim);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
   font-weight: 700;
-  color: var(--fate-magenta);
+  color: var(--fate-blue);
   flex-shrink: 0;
 }
 
-/* ── LOADING SPINNER ────────────────────────────────────────── */
+/* ── SPINNER ────────────────────────────────────────────────── */
 .fate-spinner {
-  width: 32px;
-  height: 32px;
+  width: 32px; height: 32px;
   border: 2px solid var(--fate-border);
-  border-top-color: var(--fate-magenta);
+  border-top-color: var(--fate-blue);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
@@ -480,15 +587,47 @@ select.fate-input {
   padding: 3rem;
 }
 
-/* ── CLASES UTILITARIAS ─────────────────────────────────────── */
+/* ── SKELETON ───────────────────────────────────────────────── */
+.skeleton {
+  background: var(--fate-panel);
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 170, 255, 0.06) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.skeleton-text    { height: 14px; margin-bottom: 8px; }
+.skeleton-title   { height: 20px; width: 60%; margin-bottom: 12px; }
+.skeleton-avatar  { width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── COLORES UTILITARIOS ────────────────────────────────────── */
+.text-blue    { color: var(--fate-blue); }
+.text-cyan    { color: var(--fate-cyan); }
 .text-magenta { color: var(--fate-magenta); }
 .text-gold    { color: var(--fate-gold); }
-.text-cyan    { color: var(--fate-cyan); }
-.text-muted   { color: var(--fate-muted); }
+.text-muted   { color: var(--fate-muted-bright); }
 .text-danger  { color: var(--fate-danger); }
+.text-white   { color: var(--fate-white); }
 
-.text-center  { text-align: center; }
-.text-right   { text-align: right; }
+.text-center     { text-align: center; }
+.text-right      { text-align: right; }
 
 .mt-1 { margin-top: 0.5rem; }
 .mt-2 { margin-top: 1rem; }
@@ -497,10 +636,10 @@ select.fate-input {
 .mb-2 { margin-bottom: 1rem; }
 .mb-3 { margin-bottom: 1.5rem; }
 
-.flex         { display: flex; }
-.flex-col     { flex-direction: column; }
-.items-center { align-items: center; }
+.flex            { display: flex; }
+.flex-col        { flex-direction: column; }
+.items-center    { align-items: center; }
 .justify-between { justify-content: space-between; }
-.gap-1        { gap: 0.5rem; }
-.gap-2        { gap: 1rem; }
-.w-full       { width: 100%; }
+.gap-1           { gap: 0.5rem; }
+.gap-2           { gap: 1rem; }
+.w-full          { width: 100%; }

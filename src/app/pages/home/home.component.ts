@@ -6,11 +6,12 @@ import { AuthService } from '../../core/services/auth.service';
 import { PostService } from '../../core/services/post.service';
 import { ProfileService } from '../../core/services/profile.service';
 import { Post, Profile } from '../../core/models/models';
+import { PostCardComponent } from '../../shared/components/post-card/post-card.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, PostCardComponent],
   template: `
     <div class="home-layout">
       <aside class="home-sidebar">
@@ -126,41 +127,14 @@ import { Post, Profile } from '../../core/models/models';
         }
 
         <div class="posts-list">
+          
           @for (post of posts; track post.id) {
-            <article class="post-card fate-card">
-
-              <div class="post-header">
-                @if (post.profiles?.avatar_url) {
-                  <img [src]="post.profiles!.avatar_url"
-                       class="avatar" width="40" height="40" alt="avatar"/>
-                } @else {
-                  <div class="avatar-placeholder" style="width:40px;height:40px;font-size:0.9rem;">
-                    {{ getPostInitials(post) }}
-                  </div>
-                }
-                <div class="post-meta">
-                  <span class="post-username">{{ post.profiles?.username ?? 'Maestro' }}</span>
-                  <span class="post-charname text-muted">
-                    {{ post.profiles?.character_name ?? '' }}
-                  </span>
-                </div>
-                <span class="post-date text-muted">{{ formatDate(post.created_at) }}</span>
-
-                @if (post.user_id === currentUserId) {
-                  <button
-                    class="fate-btn fate-btn-sm fate-btn-danger post-delete"
-                    (click)="deletePost(post)"
-                  >✕</button>
-                }
-              </div>
-
-              <p class="post-content">{{ post.content }}</p>
-
-              @if (post.image_url) {
-                <img [src]="post.image_url" class="post-image" alt="imagen del post"/>
-              }
-
-            </article>
+            <app-post-card
+              [post]="post"
+              [currentUserId]="currentUserId"
+              [currentUserInitial]="getInitials()"
+              [onDelete]="deletePostFn"
+            />
           }
         </div>
 
@@ -433,4 +407,6 @@ export class HomeComponent implements OnInit {
     if (diff < 86400) return `hace ${Math.floor(diff / 3600)}h`;
     return date.toLocaleDateString('es', { day: '2-digit', month: 'short' });
   }
+
+  deletePostFn = (post: Post) => this.deletePost(post);
 }
