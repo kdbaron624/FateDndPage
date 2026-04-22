@@ -29,12 +29,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/character-sheet/character-sheet.component').then(m => m.CharacterSheetComponent)
   },
-  // {
-  //   path: 'profile', 
-  //   canActivate: [authGuard],
-  //   loadComponent: () =>
-  //     import('./pages/profile/profile.component').then(m => m.ProfileComponent)
-  // },
+   {
+     path: 'profile', 
+     canActivate: [authGuard],
+     loadComponent: () =>
+       import('./pages/profile/profile.component').then(m => m.ProfileComponent)
+  },
   {
     path: 'servant-sheet', 
     canActivate: [authGuard],
