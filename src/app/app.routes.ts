@@ -23,24 +23,24 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/home/home.component').then(m => m.HomeComponent)
   },
-  {
-    path: 'profile',
-    canActivate: [authGuard],
-    loadComponent: () =>
-      import('./pages/profile/profile.component').then(m => m.ProfileComponent)
-  },
-  {
-    path: 'character-sheet',
-    canActivate: [authGuard],
-    loadComponent: () =>
-      import('./pages/character-sheet/character-sheet.component').then(m => m.CharacterSheetComponent)
-  },
-  {
-    path: 'servant-sheet',
-    canActivate: [authGuard],
-    loadComponent: () =>
-      import('./pages/servant-sheet/servant-sheet.component').then(m => m.ServantSheetComponent)
-  },
+  // {
+  //   path: 'profile',
+  //   canActivate: [authGuard],
+  //   loadComponent: () =>
+  //     import('./pages/profile/profile.component').then(m => m.ProfileComponent)
+  // },
+  // {
+  //   path: 'character-sheet',
+  //   canActivate: [authGuard],
+  //   loadComponent: () =>
+  //     import('./pages/character-sheet/character-sheet.component').then(m => m.CharacterSheetComponent)
+  // },
+  // {
+  //   path: 'servant-sheet',
+  //   canActivate: [authGuard],
+  //   loadComponent: () =>
+  //     import('./pages/servant-sheet/servant-sheet.component').then(m => m.ServantSheetComponent)
+  // },
   {
     path: '**',
     redirectTo: 'home'
